@@ -7,7 +7,7 @@
 **[Ver Releases do Android Normal](https://github.com/alan102168/jorge-android-normal/releases)**
 
 1. Abra o Release mais recente com a identificação `android-normal`.
-2. Toque no arquivo `app-debug.apk` (é um **APK de teste**, não uma publicação na Play Store).
+2. Baixe o arquivo `Jorge-Android-Normal.apk` (versões antigas podem aparecer como `app-debug.apk`). É um **APK de teste**, não uma publicação na Play Store.
 3. Para instalar, siga as opções de instalação que seu Android mostrar.
 
 Caso o Release não apareça, consulte [Actions](https://github.com/alan102168/jorge-android-normal/actions) → compilação concluída → *Artifacts*.
