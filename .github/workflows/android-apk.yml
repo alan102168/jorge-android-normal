@@ -1,4 +1,4 @@
-name: Android Normal - Gerar APK
+name: Android Normal - Compilar APK
 on:
   push:
     branches: [main]
@@ -24,11 +24,16 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
       - name: Compilar APK
         run: gradle --no-daemon assembleDebug
+      - name: Identificar arquivo do APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/Jorge-Android-Normal.apk
+
       - name: Disponibilizar APK
         uses: actions/upload-artifact@v4
         with:
           name: Jorge-Android-Normal-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: dist/Jorge-Android-Normal.apk
           if-no-files-found: error
 
       - name: Publicar APK em Releases
@@ -36,7 +41,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "android-normal-v1.0.${{ github.run_number }}" \
-            app/build/outputs/apk/debug/app-debug.apk#Jorge-Android-Normal.apk \
+            dist/Jorge-Android-Normal.apk \
             --title "Jorge Truck Driver - Android Normal v1.0.${{ github.run_number }}" \
             --notes "Versao de teste Android. APK de debug para instalacao e testes." \
             --target "$GITHUB_SHA"
